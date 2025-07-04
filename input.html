@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Digite o número (senha)</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+    #senha { font-size: 24px; width: 180px; text-align: center; }
+    .teclado {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 60px);
+      gap: 10px;
+      justify-content: center;
+    }
+    .btn {
+      font-size: 24px;
+      padding: 10px;
+      cursor: pointer;
+      user-select: none;
+      background-color: #eee;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .btn:active {
+      background-color: #ddd;
+    }
+    #enviar {
+      margin-top: 20px;
+      font-size: 20px;
+      padding: 10px 30px;
+      cursor: pointer;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Digite o número (senha)</h1>
+  <input type="password" id="senha" readonly placeholder="••••••" />
+  <div class="teclado">
+    <div class="btn" onclick="addNumero('1')">1</div>
+    <div class="btn" onclick="addNumero('2')">2</div>
+    <div class="btn" onclick="addNumero('3')">3</div>
+    <div class="btn" onclick="addNumero('4')">4</div>
+    <div class="btn" onclick="addNumero('5')">5</div>
+    <div class="btn" onclick="addNumero('6')">6</div>
+    <div class="btn" onclick="addNumero('7')">7</div>
+    <div class="btn" onclick="addNumero('8')">8</div>
+    <div class="btn" onclick="addNumero('9')">9</div>
+    <div class="btn" onclick="apagar()">⌫</div>
+    <div class="btn" onclick="addNumero('0')">0</div>
+    <div class="btn" onclick="limpar()">C</div>
+  </div>
+  <button id="enviar" onclick="enviar()">Enviar</button>
+
+  <script>
+    let senha = '';
+
+    function addNumero(n) {
+      if (senha.length < 10) { // limite de 10 números
+        senha += n;
+        atualizarInput();
+      }
+    }
+
+    function apagar() {
+      senha = senha.slice(0, -1);
+      atualizarInput();
+    }
+
+    function limpar() {
+      senha = '';
+      atualizarInput();
+    }
+
+    function atualizarInput() {
+      document.getElementById('senha').value = senha;
+    }
+
+    function enviar() {
+      if (senha.length === 0) {
+        alert('Digite pelo menos um número');
+        return;
+      }
+      window.open('display.html?senha=' + encodeURIComponent(senha), '_blank');
+    }
+  </script>
+</body>
+</html>

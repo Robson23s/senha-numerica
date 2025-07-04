@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Número Recebido</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
+    #numero {
+      font-size: 48px;
+      font-weight: bold;
+      color: #333;
+      user-select: all;
+    }
+  </style>
+</head>
+<body>
+  <h1>Número digitado:</h1>
+  <div id="numero"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const senha = params.get('senha');
+    document.getElementById('numero').textContent = senha || 'Nenhum número recebido';
+  </script>
+</body>
+</html>
